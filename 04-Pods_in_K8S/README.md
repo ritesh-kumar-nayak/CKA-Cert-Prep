@@ -37,11 +37,12 @@ We do not need to remember everything about creating the manifestfile via declar
 ==============================
 This command is used to get the details of any kubernetes objects such as pod, node etc when writing manifest files in the declarative way.
 
-Example: kubectl explain pod
-         kubectl explain node
-         kubectl explain deployment
-         kubectl explain replicaset
-         kubectl explain service
+Example: 
+        `kubectl explain pod`
+         `kubectl explain node`
+         `kubectl explain deployment`
+         `kubectl explain replicaset`
+         `kubectl explain service`
 
 
 
