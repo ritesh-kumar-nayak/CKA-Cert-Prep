@@ -1,0 +1,17 @@
+# Sample Basic pod manifest
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod2
+  labels:
+    env: demo
+    type: fontend 
+    created_by: Ritesh # At labels attribute you can keep any number of label, these are just key value pair tags.
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
+      ports:
+        - containerPort: 80
+        
