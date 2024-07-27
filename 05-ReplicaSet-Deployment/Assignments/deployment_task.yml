@@ -1,0 +1,40 @@
+# task1: Create a Deployment named `nginx` with 3 replicas. The Pods should use the `nginx:1.23.0` image and the name `nginx`. The Deployment uses the label `tier=backend`. The Pod template should use the label `app=v1`.
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deploy
+  labels:
+    tier: backend
+spec:
+  template:
+    metadata:
+      labels:
+        app: v1
+      name: nginx
+    spec:
+      containers:
+      - image: nginx:1.23.0
+        name: nginx
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+  replicas: 3
+  selector:
+    matchLabels:
+      app: v1
+
+
+# task2: Update the image to `nginx:1.23.4`.
+    #Answer: kubectl set image deploy/nginx-deploy nginx=nginx:1.23.4 --all'
+
+# task3: Verify that the change has been rolled out to all replicas.
+    #Answer: kubectl rollout history deploy/nginx-deploy
+
+# task4: Assign the change cause "Pick up patch version" to the revision.
+    #Answer: kubectl annotate deployment nginx-deploy kubernetes.io/change-cause="Pick up patch version"
+
+# task5: Scale the Deployment to 5 replicas.
+    #Answer: kubectl scale --replicas=5 deploy/nginx-deploy
+    
+# task6: Revert the Deployment to revision 1.
+    #Answer: kubectl rollout undo deploy/nginx-deploy

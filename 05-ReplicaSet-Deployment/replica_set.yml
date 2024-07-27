@@ -1,0 +1,25 @@
+apiVersion: apps/v1  # this version is a part of "apps" group. 
+kind: ReplicaSet # Get apivrsion & kind etc.. details using "kubectl explain rs" command
+metadata:
+  name: nginx-rs
+  labels:
+    env: demo
+spec:
+  template:
+  # Template is nothing but the content of a "pod.yml"
+    metadata:
+      name: nginx-pod2
+      labels:
+        env: demo
+        type: fontend 
+        created_by: Ritesh # At labels attribute you can keep any number of label, these are just key value pair tags.
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx
+          ports:
+            - containerPort: 80
+  replicas: 4
+  selector:
+    matchLabels:
+      type: fontend  # every pod running with this label will now be managed by the replicaset named "nginx-rs" irrespective of whether it was created with this replicaset initially or not.

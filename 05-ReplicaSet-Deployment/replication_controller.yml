@@ -1,0 +1,22 @@
+apiVersion:  v1
+kind: ReplicationController # Get apivrsion & kind etc.. details using "kubectl explain rc" command
+metadata:
+  name: nginx-rc
+  labels:
+    env: demo
+spec:
+  template:
+  # Template is nothing but the content of a "pod.yml"
+    metadata:
+      name: nginx-pod2
+      labels:
+        env: demo
+        type: fontend 
+        created_by: Ritesh # At labels attribute you can keep any number of label, these are just key value pair tags.
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx
+          ports:
+            - containerPort: 80
+  replicas: 3 #this define how many number of pods you want to be maintained. It should alway come at "template" indentation level

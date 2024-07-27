@@ -1,0 +1,27 @@
+# task1-Create a new Replicaset based on the nginx image with 3 replicas
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: task1-rs
+  labels:
+    purpose: practice
+spec:
+  template:
+    metadata:
+      labels:
+        run: nginx
+        purpose: practice
+      name: nginx_task_pod
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        resources: {}
+  replicas: 4 # task2-updated replicaset from 3 to 4 in yaml
+  selector:
+    matchLabels:
+      purpose: practice
+
+# task3- Update the replicas to 6 from the command line
+ #Answer:  kubectl edit rs/task1-rs , then edit the Replicas field.
