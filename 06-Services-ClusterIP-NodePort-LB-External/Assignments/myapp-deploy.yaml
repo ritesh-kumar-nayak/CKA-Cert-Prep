@@ -13,10 +13,17 @@ spec:
     name: myapp
     spec:
       containers:
-      - image: nginx:1.23.4-alpine
-        name: myapp
+      - name: myapp
+        image: nginx:1.23.4-alpine
         ports:
           - containerPort: 80
+        resources:
+          requests:
+            memory: "60Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
   replicas: 1
   selector:
     matchLabels:
