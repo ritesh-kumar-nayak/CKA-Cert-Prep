@@ -1,0 +1,8 @@
+# Declarative way of creating a namespcae
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ns-demo
+
+# This is it. It will create a namespcae named demo
