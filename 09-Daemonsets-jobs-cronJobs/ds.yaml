@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: ds-deploy
+  labels:
+    env: dev
+spec:
+  template:
+    metadata:
+      name: nginx
+      labels:
+        env: dev
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx
+          ports:
+            - containerPort: 80
+  # Replicaset is not required as it is a DaemonSet. It automatically creates a pod in all available nodes.
+  selector:
+    matchLabels:
+      env: dev
