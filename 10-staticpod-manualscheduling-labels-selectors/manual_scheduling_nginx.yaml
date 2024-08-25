@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    tier: frontend
+    type: app1
+  name: nginx
+spec:
+  containers:
+  - image: nginx
+    name: nginx
+  nodeName: ckacluster1-worker2 # Here we have explicitly defined the node name on which we want this pod to run. This is called manual scheduling because here we manually assigned the worker node instead of the SCHEDULER.
