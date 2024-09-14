@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  
+  labels:
+    run: nginx-new-labled
+  name: nginx-new-labled
+spec:
+  nodeSelector:   # This will target only node where it is labeled as gpu:false
+    gpu: "false"   # You can apply the lable by:  kubectl label node  ckacluster1-worker2 gpu=false
+
+  containers:
+  - image: nginx
+    name: nginx-new-labled
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
